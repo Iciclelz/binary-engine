@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="Binary_Engine.Views.BinaryEngineView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Binary_Engine.Views"
+      xmlns:HexView="clr-namespace:Binary_Engine.HexBox"
+      xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--<Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}"/>-->
+            <RoutedUICommand x:Key="GoToAddress" Text="Goes to the specified address."/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <UserControl.InputBindings>
+        <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
+
+        <KeyBinding Key="X" Modifiers="Control+Shift" Command="Cut"/>
+        <KeyBinding Key="C" Modifiers="Control+Shift" Command="Copy"/>
+        <KeyBinding Key="V" Modifiers="Control+Shift" Command="Paste"/>
+
+        <KeyBinding Key="G" Modifiers="Ctrl" Command="{StaticResource GoToAddress}"/>
+
+        <KeyBinding Key="F" Modifiers="Ctrl" Command="Find"/>
+    </UserControl.InputBindings>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="Open" Executed="OpenCommandBinding_Executed"/>
+        <CommandBinding Command="Save" Executed="SaveCommandBinding_Executed"/>
+
+        <CommandBinding Command="Cut" Executed="CutCommandBinding_Executed"/>
+        <CommandBinding Command="Copy" Executed="CopyCommandBinding_Executed"/>
+        <CommandBinding Command="Paste" Executed="PasteCommandBinding_Executed"/>
+
+        <CommandBinding Command="Find" Executed="FindCommandBinding_Executed"/>
+        <CommandBinding Command="{StaticResource GoToAddress}" Executed="GoToAddressCommandBinding_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Menu VerticalAlignment="Top" Height="20">
+            <MenuItem Header="File" Height="20">
+                <MenuItem Name="OpenFileMenuItem" Header="Open File..." InputGestureText="Ctrl+O" Click="OpenFileMenuItem_Click"/>
+                <Separator/>
+                <MenuItem Name="SaveFileMenuItem" Header="Save" InputGestureText="Ctrl+S" Click="SaveFileMenuItem_Click"/>
+                <MenuItem Name="SaveAsFileMenuItem" Header="Save As..." Click="SaveAsFileMenuItem_Click"/>
+                <Separator />
+                <MenuItem Name="ExitMenuItem" Header="Exit" InputGestureText="Alt+F4" Click="ExitMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit" Height="20">
+                <MenuItem x:Name="CutTextMenuItem" Header="Cut Text" InputGestureText="Ctrl+X" Click="CutTextMenuItem_Click"/>
+                <MenuItem x:Name="CopyTextMenuItem" Header="Copy Text" InputGestureText="Ctrl+C" Click="CopyTextMenuItem_Click"/>
+                <MenuItem x:Name="PasteTextMenuItem" Header="Paste Text" InputGestureText="Ctrl+V" Click="PasteTextMenuItem_Click"/>
+                <Separator/>
+                <MenuItem x:Name="CutBytesMenuItem" Header="Cut Hexadecimal Bytes" InputGestureText="Ctrl+Shift+X" Click="CutBytesMenuItem_Click"/>
+                <MenuItem x:Name="CopyBytesMenuItem" Header="Copy Hexadecimal Bytes" InputGestureText="Ctrl+Shift+C" Click="CopyBytesMenuItem_Click"/>
+                <MenuItem x:Name="PasteBytesMenuItem" Header="Paste Hexadecimal Bytes" InputGestureText="Ctrl+Shift+V" Click="PasteBytesMenuItem_Click"/>
+                <Separator/>
+                <MenuItem Name="FindMenuItem" Header="Find" InputGestureText="Ctrl+F" Click="FindMenuItem_Click"/>
+                <Separator/>
+                <MenuItem x:Name="GoToAddressMenuItem" Header="Go to Address" InputGestureText="Ctrl+G" Click="GoToAddressMenuItem_Click"/>
+                <Separator/>
+                <MenuItem x:Name="SelectAllMenuItem" Header="Select All" InputGestureText="Ctrl+A" Click="SelectAllMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help" Height="20">
+                <MenuItem Name="AboutMenuItem" Header="About Binary Engine" Click="AboutMenuItem_Click">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <WindowsFormsHost Name="ByteViewerHost" Margin="0,20,0,20">
+            <WindowsFormsHost.Child>
+                <HexView:HexBox x:Name="ByteViewer" LineInfoVisible="True" StringViewVisible="True" ColumnInfoVisible="True" GroupSeparatorVisible="True" VScrollBarVisible="True" GroupSize="8" MouseClick="ByteViewer_MouseClick"/>
+            </WindowsFormsHost.Child>
+        </WindowsFormsHost>
+        <GroupBox x:Name="FindAllReferencesGroupBox" Header="Find All References" HorizontalAlignment="Right" Margin="0,20,0,100" Width="250" Visibility="Collapsed">
+            <ListBox x:Name="FindAllListBox" MouseDoubleClick="FindAllListBox_MouseDoubleClick"/>
+            <GroupBox.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </GroupBox.Resources>
+        </GroupBox>
+        <GroupBox Name="SearchGroupBox" Header="Search" VerticalAlignment="Bottom" Margin="0,0,0,20" Visibility="Collapsed" Background="#FF1C1E26">
+            <Grid>
+                <TextBox x:Name="SearchTextBox" MaterialDesign:HintAssist.Hint="Enter a string or an array of hexadecimal bytes to search for..." Margin="0,0,435,0" KeyDown="SearchTextBox_KeyDown"/>
+                <RadioButton x:Name="SearchTextRadioButton" Content="Text" Margin="0,3,385,0" HorizontalAlignment="Right" Checked="SearchTextRadioButton_Checked"/>
+                <RadioButton x:Name="SearchBytesRadioButton" Content="Bytes" Margin="0,3,325,0" IsChecked="True" HorizontalAlignment="Right" Checked="SearchBytesRadioButton_Checked"/>
+                <CheckBox x:Name="SearchOptionCheckBox" Content="{Binding SearchOption}" Margin="0,3,225,0" IsChecked="True" HorizontalAlignment="Right"/>
+                <Button x:Name="FindButton" Content ="Find" Margin="0,0,155,0" HorizontalAlignment="Right" Background="#FF1C1E26" Click="FindButton_Click"/>
+                <Button x:Name="FindNextButton" Content="Find Next" Margin="0,0,55,0" HorizontalAlignment="Right" Background="#FF1C1E26" Click="FindNextButton_Click"/>
+                <Button x:Name="FindAllButton" Content="All" Margin="0,0,0,0" HorizontalAlignment="Right" Background="#FF1C1E26" Click="FindAllButton_Click"/>
+                <Button x:Name="SearchCloseButton" HorizontalAlignment="Right" Margin="0,-80,0,0" Width="20" Height="20" HorizontalContentAlignment="Left" Background="Black" Click="SearchCloseButton_Click">
+                    <Button.Content>
+                        <MaterialDesign:PackIcon Kind="Close" Margin="-15,-3,0,0"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <GroupBox.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </GroupBox.Resources>
+        </GroupBox>
+
+        <StatusBar Height="20" Margin="0,0,0,0" VerticalAlignment="Bottom">
+            <StatusBarItem DockPanel.Dock="Right" x:Name="ByteSizeStatusBarItem"/>
+            <StatusBarItem Content="{Binding FilePath}"/>
+        </StatusBar>
+    </Grid>
+</UserControl>

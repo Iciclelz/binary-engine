@@ -1,0 +1,136 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Binary Engine/1.0.0": {
+        "dependencies": {
+          "Dragablz.NetCore": "0.3.3",
+          "MahApps.Metro": "2.2.0",
+          "MaterialDesignThemes": "3.2.0"
+        },
+        "runtime": {
+          "Binary Engine.dll": {}
+        }
+      },
+      "ControlzEx/4.3.2": {
+        "dependencies": {
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.19",
+          "System.Text.Json": "4.7.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ControlzEx.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.3.2.7"
+          }
+        }
+      },
+      "Dragablz.NetCore/0.3.3": {
+        "runtime": {
+          "lib/netcoreapp3.1/Dragablz.dll": {
+            "assemblyVersion": "0.3.3.0",
+            "fileVersion": "0.3.3.0"
+          }
+        }
+      },
+      "MahApps.Metro/2.2.0": {
+        "dependencies": {
+          "ControlzEx": "4.3.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MahApps.Metro.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.2.0.37"
+          }
+        }
+      },
+      "MaterialDesignColors/1.2.7": {
+        "runtime": {
+          "lib/netcoreapp3.1/MaterialDesignColors.dll": {
+            "assemblyVersion": "1.2.7.1979",
+            "fileVersion": "1.2.7.1979"
+          }
+        }
+      },
+      "MaterialDesignThemes/3.2.0": {
+        "dependencies": {
+          "MaterialDesignColors": "1.2.7"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {
+            "assemblyVersion": "3.2.0.1979",
+            "fileVersion": "3.2.0.1979"
+          }
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.19": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Xaml.Behaviors.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.19.35512"
+          }
+        }
+      },
+      "System.Text.Json/4.7.2": {}
+    }
+  },
+  "libraries": {
+    "Binary Engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ControlzEx/4.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rivud1nUitXSu3GxzhKXu8gsXFqnrPOxrmVpOYejuNCe5Bm/BKevzZpJbH9hvwAx0pH9hGrqqSODa3j2Y9J/bQ==",
+      "path": "controlzex/4.3.2",
+      "hashPath": "controlzex.4.3.2.nupkg.sha512"
+    },
+    "Dragablz.NetCore/0.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eC+L8Gbu3tJHexlVDLKlHPHIyt/oYCDl6ixLVqJA3Zzvn9agkV/nGJaufujPO0ZaW2G+l4xnScP142w8NvCp/Q==",
+      "path": "dragablz.netcore/0.3.3",
+      "hashPath": "dragablz.netcore.0.3.3.nupkg.sha512"
+    },
+    "MahApps.Metro/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yPan6SozcYV3qjEK5aab88oIbwbJ7pEso689gwNYE6At2XmfFUnWnAgLJKgE6y8mdCvF4iSkYN5RcTnrnwhR9g==",
+      "path": "mahapps.metro/2.2.0",
+      "hashPath": "mahapps.metro.2.2.0.nupkg.sha512"
+    },
+    "MaterialDesignColors/1.2.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e+shDlaSAJcuTArqtfWjVUgAOlwQlgWq8akkzCGe1MvfV1ozmOqqXyWxg5w0vC/3/KZ84wnPUJeI1wzEpI0uJQ==",
+      "path": "materialdesigncolors/1.2.7",
+      "hashPath": "materialdesigncolors.1.2.7.nupkg.sha512"
+    },
+    "MaterialDesignThemes/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aOZQShQuV7sCWOwO98dYz1S4stmIWDBH+Q6KoR3wDiDyuG7twoGnBDzQBhrxuS16I3GQiG5nfvUjEJFVc/zdKg==",
+      "path": "materialdesignthemes/3.2.0",
+      "hashPath": "materialdesignthemes.3.2.0.nupkg.sha512"
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5sPWkbqImc2t1aQwIfJcKsUo7tOg1Tr8+6xVzZJB56Nzt4u9NlpcLofgdX/aRYpPKdWDA3U23Akw1KQzU5e82g==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.19",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512"
+    },
+    "System.Text.Json/4.7.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TcMd95wcrubm9nHvJEQs70rC0H/8omiSGGpU4FQ/ZA1URIqD4pjmFJh2Mfv1yH1eHgJDWTi2hMDXwTET+zOOyg==",
+      "path": "system.text.json/4.7.2",
+      "hashPath": "system.text.json.4.7.2.nupkg.sha512"
+    }
+  }
+}
