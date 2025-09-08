@@ -387,7 +387,7 @@ namespace Binary_Engine.Views
                     string backup;
                     do
                     {
-                        backup = Path.Combine(Path.GetDirectoryName(ViewModel.FilePath), Path.GetFileNameWithoutExtension(ViewModel.FilePath) + "." + new BytesConverter(new SHA1CryptoServiceProvider().ComputeHash(BitConverter.GetBytes(DateTime.Now.ToBinary()))).ToHexadecimalString(String.Empty).ToLower() + Path.GetExtension(ViewModel.FilePath) + ".bak");
+                        backup = Path.Combine(Path.GetDirectoryName(ViewModel.FilePath), Path.GetFileNameWithoutExtension(ViewModel.FilePath) + "." + new BytesConverter(SHA1.HashData(BitConverter.GetBytes(DateTime.Now.ToBinary()))).ToHexadecimalString(String.Empty).ToLower() + Path.GetExtension(ViewModel.FilePath) + ".bak");
                     } while (File.Exists(backup));
 
                     File.Copy(ViewModel.FilePath, backup, true);
